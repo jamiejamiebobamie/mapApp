@@ -1,0 +1,17 @@
+.BuiltWith {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1vh;
+}
+
+.divTitle {
+  font-family: Monospace;
+  text-align: left;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: flex-start;
+  font-family: Monospace;
+  align-content: left;
+}

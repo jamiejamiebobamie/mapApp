@@ -1,0 +1,153 @@
+.logo {
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-top: 1vh;
+  width: 5vw;
+  height: 5vw;
+  min-width: 10px;
+  min-height: 10px;
+  max-width: 70px;
+  max-height: 70px;
+}
+/*http://jsfiddle.net/gaby/9Ryvs/7/*/
+.spinner {
+  /* margin: 20px;
+  width: 100px;
+  height: 100px; */
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 20000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: spin;
+  -moz-animation-duration: 20000ms;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: spin;
+  -ms-animation-duration: 20000ms;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+
+  animation-name: spin;
+  /* animation-duration: 20000ms; */
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@-ms-keyframes spin {
+  from {
+    -ms-transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bouncerUp {
+  /* animation-name: bounce;
+  animation-timing-function: cubic-bezier(0.28, 0.84, 0.42, 1); */
+
+  -webkit-animation-name: bounce;
+  -webkit-animation-duration: 2000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: bounce;
+  -moz-animation-duration: 2000ms;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: bounce;
+  -ms-animation-duration: 2000ms;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+
+  animation-name: bounce;
+  /* animation-duration: 20000ms; */
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(0.9, 1.1) translateY(0);
+  }
+  30% {
+    transform: scale(0.9, 1.1) translateY(-3vh);
+  }
+  50% {
+    transform: scale(1.05, 0.95) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(-1vh);
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+
+.radioButton {
+  margin: 10px;
+}
+
+/* .radiobutton {
+  color: red;
+  background-color: red;
+} */
+
+.moverBackAndForth {
+  -webkit-animation-name: backAndForth;
+  -webkit-animation-duration: 2000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: backAndForth;
+  -moz-animation-duration: 2000ms;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: backAndForth;
+  -ms-animation-duration: 2000ms;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+
+  animation-name: backAndForth;
+  /* animation-duration: 20000ms; */
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes backAndForth {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: 1vw;
+  }
+  100% {
+    left: 0;
+  }
+}

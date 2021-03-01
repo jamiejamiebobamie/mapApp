@@ -1,0 +1,39 @@
+.toggleButton {
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: grey;
+  border-radius: 15px;
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  align-self: center;
+  border-style: solid;
+  border-width: thin;
+  text-align: center;
+}
+
+/* display: "flex",
+justifyContent: "center",
+flexDirection: "column",
+borderRadius: "15px",
+width: "70px",
+height: "70px",
+overflow: "hidden",
+alignSelf: "center",
+borderStyle: "solid",
+borderWidth: "thin",
+textAlign: "center" */
+
+.toggleButton:hover {
+  background-color: red;
+}
+
+.disableSelection {
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+}

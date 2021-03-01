@@ -1,0 +1,11 @@
+#mapid {
+  height: 70vh;
+  width: 100%;
+  /* margin-top: 5vh; */
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  border-color: black;
+  border-style: solid;
+  overflow: hidden;
+}

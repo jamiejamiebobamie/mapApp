@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import ToggleSlice from "../features/populationToggler/toggleSlice";
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
-  },
+    toggle: ToggleSlice
+  }
 });

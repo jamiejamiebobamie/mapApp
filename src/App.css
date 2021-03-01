@@ -1,5 +1,14 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  max-width: 1300px;
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vh;
 }
 
 .App-logo {
@@ -13,14 +22,14 @@
   }
 }
 
-.App-header {
+/* .App-header {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-}
+} */
 
 .App-link {
   color: rgb(112, 76, 182);
@@ -31,9 +40,31 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(10px)
+    transform: translateY(10px);
   }
   100% {
-    transform: translateY(0px)
+    transform: translateY(0px);
   }
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  max-width: 1300px;
+  width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vh;
+
+  /* align-content: center;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center; */
+}
+
+.bottomDisplay {
+  display: flex;
+  justify-content: space-between;
 }

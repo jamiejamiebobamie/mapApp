@@ -21078,17 +21078,16 @@ app.post("/", jsonParser, function(req, res) {
 
   // Example:
   // { counties: [ 'Arlington County, VA', 'Wilmington City, DE' ] }
-  let response = [];
 
-  if (req.body.counties) {
-    req.body.counties.forEach(county => {
-      const state_abbrev = county.slice(-2);
-      api2[0][state_abbrev].forEach(county_lookup => {
-        let key = Object.keys(county_lookup)[0];
-        if (county === key) {
-          response.push(county_lookup);
-        }
-      });
+  if (req.body.county) {
+    const state_abbrev = req.body.county.slice(-2);
+    api2[0][state_abbrev].forEach(county_lookup => {
+      let key = Object.keys(county_lookup)[0];
+      if (req.body.county === key) {
+        console.log({ coordinates: county_lookup[key] });
+
+        res.send({ coordinates: county_lookup[key] });
+      }
     });
   }
   // returns an array of latitude and longitude coordinates
@@ -21105,8 +21104,7 @@ app.post("/", jsonParser, function(req, res) {
   //     ]
   //   }
   // ]
-
-  res.send({ response: response });
+  // console.log(response);
 });
 
 app.listen(port);

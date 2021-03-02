@@ -1,29 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const toggleSlice = createSlice({
-  name: "toggle",
+// example from npx-create-redux-app
+export const mapSlice = createSlice({
+  name: "map",
   initialState: {
-    value: false
+    PUMAS: [] // PUMA entry: {population: int, counties:[array of strings], coordinates: [[lat and long], [lat and long]]}
   },
   reducers: {
-    toggle: state => {
+    addPUMA: (state, action) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      state.value = !state.value;
+
+      state.PUMAS = [...state.PUMAS, action.payload];
+      // setTimeout(console.log(state.PUMAS), 1000);
     }
   }
 });
 
-export const { toggle } = toggleSlice.actions;
+export const { addPUMA } = mapSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectToggleValue = state => {
-  console.log(state.toggle.value);
-  return state.toggle.value;
+export const selectPUMAS = state => {
+  console.log(state.map.PUMAS);
+  return state.map.PUMAS;
 };
 
-export default toggleSlice.reducer;
+export default mapSlice.reducer;

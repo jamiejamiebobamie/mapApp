@@ -1,14 +1,16 @@
-// // Use CommonJS require below so we can dynamically import during build-time.
-// if (process.env.NODE_ENV === "production") {
-//   module.exports = require("./configureStore.prod");
-// } else {
-//   module.exports = require("./configureStore.dev");
-// }
+import { createStore, applyMiddleware, compose } from "redux";
+import { rootReducer } from "./reducers";
+import createSagaMiddleware from "redux-saga";
+import { initSagas } from "./initSagas";
+import { initialState } from "./reducers";
 
-import { createStore, applyMiddleware } from "redux";
-import rootReducer from "./reducers";
-import thunk from "redux-thunk";
+const configureStore = initialState => {
+  const sagaMiddleware = createSagaMiddleware();
+  const composables = [applyMiddleware(sagaMiddleware)];
+  const enhancer = compose(...composables);
+  const store = createStore(rootReducer, initialState, enhancer);
+  initSagas(sagaMiddleware);
+  return store;
+};
 
-export default function configureStore(initialState) {
-  return createStore(rootReducer, initialState, applyMiddleware(thunk));
-}
+export const store = configureStore(initialState);

@@ -6,21 +6,15 @@ import statesData from "./../../mockApi/stateBoundsData";
 
 import L from "leaflet";
 
-import { useSelector, useDispatch } from "react-redux";
-import { addPUMA, selectPUMAS } from "./mapSlice";
-
-const MapViewer = () => {
+export const MapViewer = props => {
   // state variable for storing the current US states that the user is viewing.
-  const [currentStates, setCurrentStates] = useState([]);
-
-  const dispatch = useDispatch();
 
   const testData1 = { states: ["Wyoming", "Virginia", "Delaware"] };
   const testData2 = {
     counties: ["Arlington County, VA", "Wilmington City, DE"]
   };
 
-  const _PUMAS = useSelector(selectPUMAS);
+  // const _PUMAS = useSelector(selectPUMAS);
 
   const fetchPUMAS = async states => {
     const res = await fetch("https://localhost:5001", {
@@ -48,7 +42,7 @@ const MapViewer = () => {
           PUMA_entry.counties[count] = { county, _coords_promise };
           count++;
         });
-        dispatch(addPUMA(PUMA_entry));
+        props.addPuma(PUMA_entry);
       });
     });
   };
@@ -131,8 +125,8 @@ const MapViewer = () => {
         fillColor: getColor(feature.properties.density),
         weight: 2,
         opacity: 1,
-        color: "white",
-        dashArray: "3",
+        color: "none", // change for border color
+        // dashArray: "3", // change for border style
         fillOpacity: 0.7
       };
     }
@@ -205,7 +199,7 @@ const MapViewer = () => {
         ]
       }
     };
-    L.geoJson(test).addTo(_map.current);
+    L.geoJson(test, { style: style }).addTo(_map.current);
 
     const test2 = {
       type: "Feature",
@@ -241,7 +235,7 @@ const MapViewer = () => {
       }
     };
 
-    L.geoJson(test2).addTo(_map.current);
+    L.geoJson(test2, { style: style }).addTo(_map.current);
 
     // for each PUMA draw an outline of it on the map.
     // _PUMAS.forEach(PUMA => {
@@ -280,7 +274,7 @@ const MapViewer = () => {
       }
     });
     // store the currentStates on the map locally
-    setCurrentStates(_currStates);
+    // setCurrentStates(_currStates);
     fetchPUMAS(_currStates);
   };
 
@@ -296,4 +290,4 @@ const MapViewer = () => {
   );
 };
 
-export default MapViewer;
+// export default MapViewer;

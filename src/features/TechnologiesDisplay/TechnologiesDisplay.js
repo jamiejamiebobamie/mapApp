@@ -3,7 +3,7 @@ import React from "react";
 import Logo from "./Logo";
 import "./TechnologiesDisplay.css";
 
-const TechnologiesDisplay = () => {
+export const TechnologiesDisplay = () => {
   return (
     <div className="BuiltWith">
       <h3 className="divTitle">Built with:</h3>
@@ -25,4 +25,4 @@ const TechnologiesDisplay = () => {
   );
 };
 
-export default TechnologiesDisplay;
+// export default TechnologiesDisplay;

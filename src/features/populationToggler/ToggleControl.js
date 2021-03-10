@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { toggle, selectToggleValue } from "./toggleSlice";
 
-export function ToggleControl() {
-  const dispatch = useDispatch();
-  const toggleState = useSelector(selectToggleValue);
+export function ToggleControl(props) {
+  console.log(props);
+  // const toggleState = useSelector(selectToggleValue);
 
   // might be unnecessary to store the state a second time locally...
   // const [highPopulationToggled, togglePopulation] = useState(toggleState);
@@ -28,9 +27,9 @@ export function ToggleControl() {
         borderWidth: "thin",
         textAlign: "center"
       }}
-      onClick={() => dispatch(toggle())}
+      onClick={() => props.togglePopulationSetting()}
     >
-      {toggleState ? (
+      {!props.highPopulationToggled ? (
         <div className="disableSelection">{singlePerson}</div>
       ) : (
         <div>{people}</div>
@@ -39,4 +38,4 @@ export function ToggleControl() {
   );
 }
 
-export default ToggleControl;
+// export default ToggleControl;

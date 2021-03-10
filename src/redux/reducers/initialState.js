@@ -1,5 +1,4 @@
-export default {
-  courses: [],
-  authors: [],
-  apiCallsInProgress: 0
+export const initialState = {
+  map: { PUMAS: [] },
+  settings: { highPopulationToggled: true }
 };

@@ -1,4 +1,4 @@
 export const initialState = {
-  map: { PUMAS: [] },
+  map: {},
   settings: { highPopulationToggled: true }
 };

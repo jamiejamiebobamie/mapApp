@@ -275,7 +275,12 @@ export const MapViewer = props => {
     });
     // store the currentStates on the map locally
     // setCurrentStates(_currStates);
-    fetchPUMAS(_currStates);
+    // fetchPUMAS(_currStates);
+
+    // dispatch an action to the store with a payload of array of state names.
+    // _currStates
+    props.addStates(_currStates);
+    // props.addPuma(_currStates);
   };
 
   return (

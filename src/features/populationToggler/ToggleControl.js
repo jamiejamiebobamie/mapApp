@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 export function ToggleControl(props) {
-  console.log(props);
   // const toggleState = useSelector(selectToggleValue);
 
   // might be unnecessary to store the state a second time locally...

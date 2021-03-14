@@ -1,3 +1,2 @@
-export { getMapSlice } from "./mapSelector";
-export { getPUMAS, checkForUS_StateInStore } from "./mapSelector";
+export { getMapSlice, getCounties } from "./mapSelector";
 export { populationToggleSelector } from "./populationToggleSelector";

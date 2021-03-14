@@ -21078,15 +21078,16 @@ app.post("/", jsonParser, function(req, res) {
 
   // Example:
   // { counties: [ 'Arlington County, VA', 'Wilmington City, DE' ] }
+  // console.log(req.body);
 
   if (req.body.county) {
     const state_abbrev = req.body.county.slice(-2);
     api2[0][state_abbrev].forEach(county_lookup => {
       let key = Object.keys(county_lookup)[0];
       if (req.body.county === key) {
-        console.log({ coordinates: county_lookup[key] });
+        // console.log({ coordinates: county_lookup[key] });
 
-        res.send({ coordinates: county_lookup[key] });
+        res.send({ county: req.body.county, coordinates: county_lookup[key] });
       }
     });
   }

@@ -1289,7 +1289,7 @@ const api1 = [
     ]
   },
   {
-    State: "District Of Columbia",
+    State: "District of Columbia",
     PUMAS: [
       { Counties: ["District of Columbia, DC"], Population: 112727 },
       { Counties: ["District of Columbia, DC"], Population: 135705 },
@@ -7431,7 +7431,7 @@ app.post("/", jsonParser, function(req, res) {
   // req.body.abbrev;
   // console.log("hi");
 
-  console.log(req.body.states);
+  // console.log(req.body.states);
 
   let response = [];
 
@@ -7447,6 +7447,7 @@ app.post("/", jsonParser, function(req, res) {
       });
     });
   }
+  // console.log(response);
   res.send({ response: response });
 });
 

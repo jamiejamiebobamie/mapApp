@@ -12,14 +12,29 @@ import {
 
 import fetch from "isomorphic-fetch";
 
-import { actions, addState, addPuma } from "../actions";
+import { actions, addState, addPuma, addCounty } from "../actions";
 
-import { checkForUS_StateInStore } from "../selectors";
+function* getPUMACoords(county) {
+  const response = yield call(fetch, "https://localhost:5002", {
+    method: "POST",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+    body: JSON.stringify({ county })
+  });
+  const data = yield apply(response, response.json);
+  console.log(data);
 
-export function* getPUMA_Coords(PUMA) {
-  console.log(PUMA);
-  // while (true) {
-  // }
+  if (data) {
+    yield put({ type: actions.ADD_COUNTY, payload: data });
+
+    // yield put(addCounty, data);
+  }
 }
 
 export function* getStatePUMAS() {
@@ -39,107 +54,45 @@ export function* getStatePUMAS() {
       body: JSON.stringify({ states: action.payload })
     });
     const data = yield apply(response, response.json);
-    console.log(data);
-    if (data.response) {
-      yield data.response.forEach(
-        state_PUMA_Object =>
-          // put({ type: actions.ADD_STATE, state_PUMA_Object })
-          put(addState, state_PUMA_Object)
+    // if (
+    //   data.response &&
+    //   data.response.length &&
+    //   data.response[0] &&
+    //   data.response[0].PUMAS &&
+    //   data.response[0].PUMAS.length &&
+    //   data.response[0].PUMAS[0].Counties &&
+    //   data.response[0].PUMAS[0].Counties.length &&
+    //   data.response[0].PUMAS[0].Counties[0]
+    // ) {
+    //   yield data.response.map(us_state_object=>us_state_object.PUMAS.map(Counties=>).Counties[0].map(item =>
+    //     spawn(getPUMACoords, data.response[0].PUMAS[0].Counties[0])
+    //   );
 
-        // put(addPuma(state_PUMA_Object))
-      );
+    // each us state object
+    for (let i = 0; i < data.response.length; i++) {
+      // each PUMA array in us state object
+      for (let j = 0; j < data.response[i].PUMAS.length; j++) {
+        // each county in singular PUMA
+        for (let k = 0; k < data.response[i].PUMAS[j].Counties.length; k++) {
+          const county = data.response[i].PUMAS[j].Counties[k];
+          yield spawn(getPUMACoords, county);
+        }
+      }
     }
 
-    // US_States.forEach(US_State => {
-    //     const hi = yield put(setCurrentUser(US_State));
-    //
-    // if (!checkForUS_StateInStore(US_State)) {
-    // }
+    // yield data.response.forEach(us_state_object => {
+    //   us_state_object.PUMAS.forEach(PUMA => {
+    //     PUMA.Counties.forEach(county => {});
+    //   });
     // });
+    // yield data.response.forEach(us_state_object => {
+    //   us_state_object.PUMAS.forEach(PUMA => {
+    //     PUMA.Counties.forEach(county => {
+    //       spawn(getPUMACoords, county);
+    //     });
+    //   });
+    // });
+
+    // yield items.map(item=>call(fetchItemPrice,item.id,user.country));
   }
 }
-//  const
-//     while (true){
-//
-//     }
-//   const res = yield fetch("https://localhost:5001", {
-//     method: "POST",
-//     mode: "cors",
-//     cache: "no-cache",
-//     credentials: "same-origin",
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     redirect: "follow",
-//     referrerPolicy: "no-referrer",
-//     body: JSON.stringify({ states: states })
-//   });
-//
-//   const data = await res.json();
-//   data.response.forEach(state => {
-//     state.PUMAS.forEach(PUMA => {
-//       const PUMA_entry = {
-//         counties: PUMA.Counties,
-//         population: PUMA.Population
-//       };
-//       let count = 0;
-//       PUMA_entry.counties.forEach(county => {
-//         let _coords_promise = fetchCoords(county);
-//         PUMA_entry.counties[count] = { county, _coords_promise };
-//         count++;
-//       });
-//       props.addPuma(PUMA_entry);
-//     });
-//   });
-//
-//
-// }
-//
-// const fetchPUMAS = async states => {
-//   const res = await fetch("https://localhost:5001", {
-//     method: "POST",
-//     mode: "cors",
-//     cache: "no-cache",
-//     credentials: "same-origin",
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     redirect: "follow",
-//     referrerPolicy: "no-referrer",
-//     body: JSON.stringify({ states: states })
-//   });
-//   const data = await res.json();
-//   data.response.forEach(state => {
-//     state.PUMAS.forEach(PUMA => {
-//       const PUMA_entry = {
-//         counties: PUMA.Counties,
-//         population: PUMA.Population
-//       };
-//       let count = 0;
-//       PUMA_entry.counties.forEach(county => {
-//         let _coords_promise = fetchCoords(county);
-//         PUMA_entry.counties[count] = { county, _coords_promise };
-//         count++;
-//       });
-//       props.addPuma(PUMA_entry);
-//     });
-//   });
-// };
-//
-// // test api2
-// const fetchCoords = async county => {
-//   const res = await fetch("https://localhost:5002", {
-//     method: "POST",
-//     mode: "cors",
-//     cache: "no-cache",
-//     credentials: "same-origin",
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     redirect: "follow",
-//     referrerPolicy: "no-referrer",
-//     body: JSON.stringify({ county })
-//   });
-//   const coords = await res.json();
-//   return coords;
-// };

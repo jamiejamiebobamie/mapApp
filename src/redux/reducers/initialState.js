@@ -1,4 +1,4 @@
 export const initialState = {
-  map: {},
+  map: { Counties: [] },
   settings: { highPopulationToggled: true }
 };

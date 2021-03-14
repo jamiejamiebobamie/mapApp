@@ -4,9 +4,13 @@ import { MapViewer } from "./MapViewer";
 import { addPuma, addStates } from "./../../redux/actions";
 // import { test } from "./../../redux/actions";
 
-import { getPUMAS } from "./../../redux/selectors";
+import { getCounties, getMapSlice } from "./../../redux/selectors";
 
-const mapStateToProps = store => getPUMAS(store);
+// the selector getCounties isn't working...
+const mapStateToProps = store =>
+  getMapSlice(store) ? getMapSlice(store) : store;
+
+// const mapStateToProps = store => (store.Counties ? store.Counties : { store });
 
 const mapDispatchToProps = {
   addPuma,
